@@ -1,8 +1,9 @@
-import { CartItems } from "./CartItems";
+import { useSelector } from "react-redux";
+import { CartItem } from "./CartItem";
 
 export const Cart = () => {
-  // TODO: etch products from the cart store
-  const products = [];
+  // Fetching products from the cart store
+  const products = useSelector((store) => store.cart.items);
 
   // TODO: calculate total from the sum of all products in the cart
   const totalPrice = 0;
@@ -15,9 +16,11 @@ export const Cart = () => {
         </span>
         <div className="amount">Total: {totalPrice}:-</div>
       </div>
-
+      test
       <ul className="items">
-        <CartItems />
+        {products.map((product) => (
+          <CartItem key={product.id} product={product} />
+        ))}
       </ul>
     </div>
   );
